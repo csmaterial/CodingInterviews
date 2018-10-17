@@ -51,6 +51,58 @@
 
 通常打印只是一个只读操作，我们肯定不希望输入时候修改链表的内容
 
+# my ans
+## 递归
+```
+
+class Solution {
+ public:
+  vector<int> dev;
+  vector<int>& printListFromTailToHead(struct ListNode* head) {
+    if(head!=NULL) {
+      if(head->next!=NULL) {
+        dev=printListFromTailToHead(head->next);
+      }
+      dev.push_back(head->val);
+    }
+    return dev;
+  }
+};
+```
+## 栈
+```
+/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        ListNode *node = head;
+        stack<int> st;
+        int count = 0;
+        while(node != NULL)
+        {
+            st.push(node->val);
+            count++;
+            node = node->next;
+        }
+        vector<int> ans(count);
+        for(int i = 0;i<count;i++){
+            ans[i] = st.top( );
+            st.pop( );
+        }
+        return ans;
+    }
+};
+```
+
+
 ##利用栈的后进先出特性
 -------
 
@@ -175,38 +227,7 @@ int __tmain( )
 }
 
 ```
-## my ans
-```
-/**
-*  struct ListNode {
-*        int val;
-*        struct ListNode *next;
-*        ListNode(int x) :
-*              val(x), next(NULL) {
-*        }
-*  };
-*/
-class Solution {
-public:
-    vector<int> printListFromTailToHead(ListNode* head) {
-        ListNode *node = head;
-        stack<int> st;
-        int count = 0;
-        while(node != NULL)
-        {
-            st.push(node->val);
-            count++;
-            node = node->next;
-        }
-        vector<int> ans(count);
-        for(int i = 0;i<count;i++){
-            ans[i] = st.top( );
-            st.pop( );
-        }
-        return ans;
-    }
-};
-```
+
 
 #递归实现
 -------
