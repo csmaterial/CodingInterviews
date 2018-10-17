@@ -37,6 +37,31 @@
 
 ![题目](./find.jpg)
 
+# myans
+```
+class Solution {
+public:
+    bool Find(int target, vector<vector<int> > array) {
+        int row = array.size();
+        int col = array[0].size();
+        for(int i = 0,j = col-1;(i<=row-1)&&(j>=0);){
+            if(array[i][j] == target){
+                return true;
+            }
+            else if(array[i][j] > target){
+                j--;
+            }
+            else if(array[i][j] < target){
+                i++;
+            }
+        }
+        return false;
+    }
+};
+```
+
+
+
 #暴力解法
 -------
 
