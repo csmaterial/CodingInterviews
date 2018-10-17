@@ -36,6 +36,37 @@
 
 那么怎么在原字符串上进行高效的替换呢？
 
+# myans
+```
+class Solution {
+public:
+	void replaceSpace(char *str,int length) {
+        int count =0;
+        for(int i = 0;i<length;i++){
+            if(str[i] == ' '){
+                count++;
+            }
+        }
+        for(int i = length,j = length+count*2;i>=0,j>=0;i--,j--){
+            if(i == j){
+                break;
+            }
+            if(str[i] == ' '){
+                str[j] = '0';
+                j--;
+                str[j] = '2';
+                j--;
+                str[j] = '\%';
+            }
+            else{
+                str[j] = str[i];
+            }
+        }
+	}
+};
+```
+
+
 #暴力替换
 -------
 
